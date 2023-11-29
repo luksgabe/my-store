@@ -902,7 +902,7 @@ FodyWeavers.xsd
 # JetBrains Rider
 .idea/
 *.sln.iml
-bin/*
-obj/*
+**/bin/*
+**/obj/*
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node,Csharp,DotnetCore,VisualStudio
