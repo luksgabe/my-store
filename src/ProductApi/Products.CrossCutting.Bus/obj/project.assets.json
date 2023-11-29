@@ -190,11 +190,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.CrossCutting.Bus\\Products.CrossCutting.Bus.csproj",
+      "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.CrossCutting.Bus\\Products.CrossCutting.Bus.csproj",
       "projectName": "Products.CrossCutting.Bus",
-      "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.CrossCutting.Bus\\Products.CrossCutting.Bus.csproj",
+      "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.CrossCutting.Bus\\Products.CrossCutting.Bus.csproj",
       "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-      "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.CrossCutting.Bus\\obj\\",
+      "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.CrossCutting.Bus\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -211,8 +211,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\Products.Application.csproj": {
-              "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\Products.Application.csproj"
+            "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\Products.Application.csproj": {
+              "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\Products.Application.csproj"
             }
           }
         }

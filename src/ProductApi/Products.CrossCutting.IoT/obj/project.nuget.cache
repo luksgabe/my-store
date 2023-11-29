@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3SUnktCtsoRDNYaaSyaLFRPlaly18lzEgJQNLYJLaAXyz88tzF4Javdq2kXZmpUumRnPJqSHAt8f8RaAD+nssw==",
+  "dgSpecHash": "FJmweWt2D93fVJTgSvAXZofp61Cx8x430cqw28UFPKp7jG7LhZbsD4sAdovxWNovj027A2nFrMlJFWCXtr52JQ==",
   "success": true,
-  "projectFilePath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.CrossCutting.IoT\\Products.CrossCutting.IoT.csproj",
+  "projectFilePath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.CrossCutting.IoT\\Products.CrossCutting.IoT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucas\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

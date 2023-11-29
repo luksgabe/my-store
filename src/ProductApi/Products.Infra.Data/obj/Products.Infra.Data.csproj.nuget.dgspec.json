@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj": {}
+    "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj": {}
   },
   "projects": {
-    "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\Products.Application.csproj": {
+    "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\Products.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\Products.Application.csproj",
+        "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\Products.Application.csproj",
         "projectName": "Products.Application",
-        "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\Products.Application.csproj",
+        "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\Products.Application.csproj",
         "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-        "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\obj\\",
+        "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Domain\\Products.Domain.csproj": {
-                "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Domain\\Products.Domain.csproj"
+              "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Domain\\Products.Domain.csproj": {
+                "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Domain\\Products.Domain.csproj"
               }
             }
           }
@@ -73,14 +73,14 @@
         }
       }
     },
-    "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Domain\\Products.Domain.csproj": {
+    "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Domain\\Products.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Domain\\Products.Domain.csproj",
+        "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Domain\\Products.Domain.csproj",
         "projectName": "Products.Domain",
-        "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Domain\\Products.Domain.csproj",
+        "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Domain\\Products.Domain.csproj",
         "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-        "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Domain\\obj\\",
+        "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -128,14 +128,14 @@
         }
       }
     },
-    "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj": {
+    "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj",
+        "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj",
         "projectName": "Products.Infra.Data",
-        "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj",
+        "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj",
         "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-        "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Infra.Data\\obj\\",
+        "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Infra.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -152,11 +152,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\Products.Application.csproj": {
-                "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\Products.Application.csproj"
+              "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\Products.Application.csproj": {
+                "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\Products.Application.csproj"
               },
-              "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Domain\\Products.Domain.csproj": {
-                "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Domain\\Products.Domain.csproj"
+              "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Domain\\Products.Domain.csproj": {
+                "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Domain\\Products.Domain.csproj"
               }
             }
           }

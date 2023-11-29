@@ -8130,11 +8130,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.WebApi\\Products.WebApi.csproj",
+      "projectUniqueName": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.WebApi\\Products.WebApi.csproj",
       "projectName": "Products.WebApi",
-      "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.WebApi\\Products.WebApi.csproj",
+      "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.WebApi\\Products.WebApi.csproj",
       "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-      "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.WebApi\\obj\\",
+      "outputPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8151,14 +8151,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\Products.Application.csproj": {
-              "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Application\\Products.Application.csproj"
+            "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\Products.Application.csproj": {
+              "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Application\\Products.Application.csproj"
             },
-            "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.CrossCutting.IoT\\Products.CrossCutting.IoT.csproj": {
-              "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.CrossCutting.IoT\\Products.CrossCutting.IoT.csproj"
+            "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.CrossCutting.IoT\\Products.CrossCutting.IoT.csproj": {
+              "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.CrossCutting.IoT\\Products.CrossCutting.IoT.csproj"
             },
-            "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj": {
-              "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj"
+            "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj": {
+              "projectPath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj"
             }
           }
         }

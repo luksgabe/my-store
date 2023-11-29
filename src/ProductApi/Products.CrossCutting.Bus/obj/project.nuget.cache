@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JXGdNclz2uQvcDskzZgeWH/m4dLIBHWy+L/281lP1CThYQyTF29mlh20prcB79Yd32I0HkBCyO1iaPC4VU4Bqg==",
+  "dgSpecHash": "ZDutoPxPCSArhQi1uSGm8izHTaj5j2hHM7RTH/eU4/cKzA9MPoNMsZ80meLGpML4jt8lCht5vfRSx2tvEMzDMg==",
   "success": true,
-  "projectFilePath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.CrossCutting.Bus\\Products.CrossCutting.Bus.csproj",
+  "projectFilePath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.CrossCutting.Bus\\Products.CrossCutting.Bus.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucas\\.nuget\\packages\\fluentvalidation\\11.8.0\\fluentvalidation.11.8.0.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",

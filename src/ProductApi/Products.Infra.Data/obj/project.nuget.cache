@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E8lZ7W8JVYv4UOot+sazAqjQpSMsC1X4Qd1cS+zScnbkKDmXc3IeE5K/clTPqbKCW305RwOY/a0woqnPhYMB/w==",
+  "dgSpecHash": "q/DbmkWmVRY022Un73VyhgjHH7WkCrSIDm6lu8RdE3sSTU1V8+cLR/E00dx5UDMoIyJw2ToX6CNQNzZTVQYT3w==",
   "success": true,
-  "projectFilePath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj",
+  "projectFilePath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Infra.Data\\Products.Infra.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucas\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

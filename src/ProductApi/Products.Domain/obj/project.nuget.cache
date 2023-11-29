@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uEfeVjQrnSYxoEMiKYEkwEn0nfvV+2VSFjKsR04G4RTyR5XYZctTVAk40og43e7s7Bazgx4o3Eoap20eOu5zMg==",
+  "dgSpecHash": "cGZYFTuIJBgpLviK0MYdz7Mb4+m3ONCIHGsI/skfVOT7j2bUNsydaKMF8I+wlnfGlp+QJegqGg3MdPgB96UqNg==",
   "success": true,
-  "projectFilePath": "D:\\Lucas\\Meus Projetos\\my-store\\product\\ProductApi\\Products.Domain\\Products.Domain.csproj",
+  "projectFilePath": "D:\\Lucas\\Meus Projetos\\my-store\\src\\ProductApi\\Products.Domain\\Products.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
