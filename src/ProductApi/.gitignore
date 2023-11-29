@@ -904,5 +904,6 @@ FodyWeavers.xsd
 *.sln.iml
 **/bin/*
 **/obj/*
+*.vs/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node,Csharp,DotnetCore,VisualStudio
