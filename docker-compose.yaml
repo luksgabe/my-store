@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+        rabbitmq:
+               image: rabbitmq:3-management
+               container_name: rabbitmq_management               
+               ports: 
+                - 5672:5672 # (erlang) communication between the nodes and CLI tool
+                - 15672:15672 # communication with the web management API 
+               
+               volumes:
+                # data persistence
+                - /docker_conf/rabbitmq/data/:/var/lib/rabbitmq/
+                # data mapping -> host: container
+                # queues and messages data of the container will be stored on the host
+               environment:
+                - RABBITMQ_DEFAULT_USER=admin
+                - RABBITMQ_DEFAULT_PASS=123456
+               
+               restart: always
+        mongodb-product:
+            image: mongodb/mongodb-community-server:6.0-ubi8
+            restart: always
+            environment:
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=123456
+            - ME_CONFIG_MONGODB_URL=mongodb://root:example@mongo:27017/
+        
+volumes:
+    logs-folder:
+        name: ${log_rabbitmq_management}
+        driver: local

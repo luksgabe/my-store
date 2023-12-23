@@ -10,12 +10,9 @@ namespace Products.Infra.Data.Mapping
         {
             builder.ToTable("Category");
 
-            builder.HasKey(p => p.Id);
-
             builder.Property(p => p.Id)
                 .HasColumnName("Id")
-                .IsRequired()
-                .ValueGeneratedOnAdd();
+                .IsRequired();
 
             builder.Property(p => p.Name)
                 .HasColumnName("Name")

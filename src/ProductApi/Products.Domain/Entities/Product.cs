@@ -13,13 +13,14 @@ namespace Products.Domain.Entities
         public override DateTime? DeletedAt { get; set; }
 
 
-        public long IdCategory { get; set; }
+        public Guid IdCategory { get; set; }
         public Category Category { get; set; }
-        public long? IdGenre { get; set; }
+        public Guid? IdGenre { get; set; }
         public Genre Genre { get; set; }
 
-        public Product(string name, string description, string color, string size)
+        public Product(Guid id, string name, string description, string color, string size)
         {
+            Id = id;
             Name = name;
             Description = description;
             Color = color;

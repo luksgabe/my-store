@@ -10,8 +10,9 @@ namespace Products.Domain.Entities
 
         public ICollection<Product> Products { get; set; }
 
-        public Genre(string description)
+        public Genre(Guid id, string description)
         { 
+            Id = id;
             Description = description;
         }
     }

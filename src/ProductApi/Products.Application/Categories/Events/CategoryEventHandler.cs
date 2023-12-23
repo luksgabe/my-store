@@ -1,14 +1,22 @@
 ﻿using MediatR;
+using Products.Domain.Interfaces.Repositories;
+using Products.Domain.Interfaces.SeedWork;
+using Productss.Domain.Entities;
 
 namespace Products.Application.Categories.Events
 {
-    public class CategoryEventHandler : INotificationHandler<CategoryRegisterEvent>
+    public class CategoryEventHandler : IEventHandler<CategoryRegisterEvent>
     {
-        public Task Handle(CategoryRegisterEvent notification, CancellationToken cancellationToken)
+        private readonly ICategoryRepository _categoryRepository;
+
+        public CategoryEventHandler(ICategoryRepository categoryRepository)
         {
-            // do something...
-            Console.WriteLine("Register category event worked!");
-            return Task.CompletedTask;
+            _categoryRepository = categoryRepository;
+        }
+
+        public async Task Handle(CategoryRegisterEvent notification, CancellationToken cancellationToken)
+        {
+            await _categoryRepository.CreateCategory(new Category(notification.Id, notification.Name));
         }
     }
 }

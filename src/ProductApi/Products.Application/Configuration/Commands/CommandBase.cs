@@ -4,10 +4,5 @@
     {
         public long Id { get; }
 
-        public CommandBase() { }
-        protected CommandBase(long id)
-        {
-            this.Id = id;
-        }
     }
 }

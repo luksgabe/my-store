@@ -1,28 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using Products.Domain.Interfaces.Repositories;
 using Products.Domain.Interfaces.SeedWork;
 using Products.Infra.Data.Context;
+using Products.Infra.Data.Options;
 
 namespace Products.Infra.Data.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IAggregateRoot
     {
         protected AppDbContext _context { get; }
-
-        public Repository(AppDbContext context)
+        protected readonly IMongoCollection<TEntity> _mongoContext;
+        public Repository(AppDbContext context, IMongoDatabaseSettings _mongoSettings)
         {
             _context = context;
             _context.ChangeTracker.LazyLoadingEnabled = false;
+
+            var client = new MongoClient(_mongoSettings.ConnectionString);
+            var mongoDb = client.GetDatabase(_mongoSettings.DatabaseName);
+            _mongoContext = mongoDb.GetCollection<TEntity>(nameof(TEntity));
         }
 
         private DbSet<TEntity> _dbSet => _context.Set<TEntity>();
 
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
-        {
-            return await _dbSet.ToListAsync();
-        }
+            => await _mongoContext.Find(p => true).ToListAsync();
 
-        public virtual async Task<TEntity> GetByIdAsync(long id)
+        public virtual async Task<TEntity> GetByIdAsync(Guid id)
         {
             return await _dbSet.FindAsync(id);
         }

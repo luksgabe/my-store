@@ -7,7 +7,7 @@ namespace Products.Application.Categories.Commands.Validations
         protected void ValidateId()
         {
             RuleFor(c => c.Id)
-                .LessThanOrEqualTo(0);
+                .NotEqual(Guid.Empty);
         }
 
         protected void ValidateName()

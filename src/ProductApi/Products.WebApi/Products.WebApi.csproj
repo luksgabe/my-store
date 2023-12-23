@@ -21,7 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Products.Application\Products.Application.csproj" />
     <ProjectReference Include="..\Products.CrossCutting.IoT\Products.CrossCutting.IoT.csproj" />
-    <ProjectReference Include="..\Products.Infra.Data\Products.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

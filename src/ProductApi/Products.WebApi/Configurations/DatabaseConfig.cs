@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Products.Infra.Data.Context;
+using Products.Infra.Data.Options;
 
 namespace Products.WebApi.Configurations
 {
@@ -15,6 +18,10 @@ namespace Products.WebApi.Configurations
 
             services.AddDbContext<EventStoreSqlContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            services.Configure<MongoDatabaseSettings>(configuration.GetSection(nameof(MongoDatabaseSettings)));
+
+            services.AddSingleton<IMongoDatabaseSettings>(sp => sp.GetRequiredService<IOptions<MongoDatabaseSettings>>().Value);
         }
     }
 }

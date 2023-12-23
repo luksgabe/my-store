@@ -24,11 +24,12 @@ namespace Products.Application.Categories.Commands
         {
             if (!message.IsValid()) return message.ValidationResult;
 
-            var category = new Category(message.Name);
+            var category = new Category(Guid.NewGuid(), message.Name);
+
+            category.AddDomainEvent(new CategoryRegisterEvent(category.Id, category.Name));
 
             await _categoryRepository.AddAsync(category);
 
-            category.AddDomainEvent(new CategoryRegisterEvent(category.Id, category.Name));
             return await Commit();
         }
     }

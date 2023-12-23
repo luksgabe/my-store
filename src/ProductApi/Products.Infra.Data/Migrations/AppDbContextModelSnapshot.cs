@@ -51,12 +51,10 @@ namespace Products.Infra.Data.Migrations
 
             modelBuilder.Entity("Products.Domain.Entities.Genre", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime")
@@ -79,12 +77,10 @@ namespace Products.Infra.Data.Migrations
 
             modelBuilder.Entity("Products.Domain.Entities.Product", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Color")
                         .HasMaxLength(10)
@@ -99,11 +95,11 @@ namespace Products.Infra.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Description");
 
-                    b.Property<long>("IdCategory")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("IdCategory")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<long?>("IdGenre")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("IdGenre")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -131,12 +127,10 @@ namespace Products.Infra.Data.Migrations
 
             modelBuilder.Entity("Productss.Domain.Entities.Category", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime")

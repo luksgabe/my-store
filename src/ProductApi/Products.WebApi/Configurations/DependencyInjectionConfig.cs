@@ -1,14 +1,18 @@
-﻿using Products.CrossCutting.IoT;
+﻿using Products.CrossCutting.Bus;
+using Products.CrossCutting.IoT;
 
 namespace Products.WebApi.Configurations
 {
     public static class DependencyInjectionConfig
     {
-        public static void AddDependencyInjectionConfiguration(this IServiceCollection services)
+        public static void AddDependencyInjectionConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
 
-            NativeInjectorBootstrapper.RegisterServices(services);
+            var rabbitMqSettings = configuration.GetSection("RabbitMqSettings").Get<RabbitMqSetting>();
+            services.AddSingleton(rabbitMqSettings);
+
+            NativeInjectorBootstrapper.RegisterServices(services, configuration);
         }
     }
 }

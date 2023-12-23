@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Application", "1-Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.Application", "Products.Application\Products.Application.csproj", "{BE06C09A-A03A-4299-9BA3-7ACA32979950}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.CrossCutting.Bus", "Products.CrossCutting.Bus\Products.CrossCutting.Bus.csproj", "{CE1250F5-5D7E-4177-950C-518DDE4CCB54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Products.CrossCutting.Bus", "Products.CrossCutting.Bus\Products.CrossCutting.Bus.csproj", "{CE1250F5-5D7E-4177-950C-518DDE4CCB54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

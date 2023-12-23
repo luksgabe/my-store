@@ -11,8 +11,9 @@ namespace Productss.Domain.Entities
 
         public ICollection<Product> Products { get; set; }
 
-        public Category(string name)
+        public Category(Guid id, string name)
         {
+            Id = id;
             Name = name;
         }
     }

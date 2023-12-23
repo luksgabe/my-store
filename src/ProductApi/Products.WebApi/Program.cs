@@ -1,6 +1,6 @@
-using MediatR;
+using Products.CrossCutting.Bus;
 using Products.WebApi.Configurations;
-using System.Reflection;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +11,7 @@ builder.Configuration
     .AddUserSecrets<Program>()
     .AddEnvironmentVariables();
 
-// Add services to the container.
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -24,10 +24,9 @@ builder.Services.AddDatabaseConfiguration(builder.Configuration);
 // Adding MediatR for Domain Events and Notifications
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<Program>());
 
-builder.Services.AddDependencyInjectionConfiguration();
+builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -35,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.AddMessageBrokerConfig();
 
 app.UseHttpsRedirection();
 

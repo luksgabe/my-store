@@ -6,11 +6,16 @@ namespace Products.Domain.Entities
     {
         private List<IEvent> _domainEvents;
 
-        public virtual long Id { get; set; }
+        public virtual Guid Id { get; set; }
         public abstract DateTime? UpdatedAt { get; set; }
         public abstract DateTime? DeletedAt { get; set; }
 
         public IReadOnlyCollection<IEvent> DomainEvents => _domainEvents?.AsReadOnly();
+
+        protected Entity()
+        {
+            Id = Guid.NewGuid();
+        }
 
         public void AddDomainEvent(IEvent domainEvent)
         {

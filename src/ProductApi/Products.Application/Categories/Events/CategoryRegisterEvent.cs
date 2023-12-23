@@ -1,19 +1,19 @@
 ﻿using Products.Application.Configuration.Messaging;
+using Productss.Domain.Entities;
 
 namespace Products.Application.Categories.Events
 {
     public class CategoryRegisterEvent : Event
     {
-        public CategoryRegisterEvent(long id, string name)
+        public CategoryRegisterEvent(Guid id, string name)
         {
             Id = id;
             Name = name;
         }
 
-        public long Id { get; set; }
+        public Guid Id { get; private set; }
 
         public string Name { get; private set; }
 
-        
     }
 }
