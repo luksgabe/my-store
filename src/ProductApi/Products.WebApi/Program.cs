@@ -21,6 +21,8 @@ builder.Services.AddSwaggerGen();
 //Adiciona configuração de Banco de dados
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 
+builder.Services.AddAutoMapperConfiguration();
+
 // Adding MediatR for Domain Events and Notifications
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<Program>());
 
