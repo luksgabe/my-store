@@ -1,4 +1,6 @@
 ﻿using Products.Domain.Interfaces.SeedWork;
+using Productss.Domain.Entities;
+using System.Linq.Expressions;
 
 namespace Products.Domain.Interfaces.Repositories
 {
@@ -7,7 +9,12 @@ namespace Products.Domain.Interfaces.Repositories
         Task AddAsync(TEntity obj);
         Task<TEntity> GetByIdAsync(Guid id);
         Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<IEnumerable<TEntity>> GetCustomData(Expression<Func<TEntity, bool>> expression);
         Task UpdateAsync(TEntity obj);
-        void Remove(long id);
+        Task RemoveAsync(TEntity entity);
+        Task CreateNoSql(TEntity entity);
+        Task UpdateNoSql(Guid id, TEntity entity);
+        Task DeleteNoSql(Guid id);
+        Task DeleteNoSql(Guid id, TEntity entityForDeletion);
     }
 }

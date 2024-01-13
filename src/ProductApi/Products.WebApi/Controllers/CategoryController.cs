@@ -10,28 +10,15 @@ namespace Products.WebApi.Controllers
 {
     [Route("api/category")]
     [ApiController]
-    public class CategoryController : Controller
+    public class CategoryController : ApiController
     {
         private readonly IMediatorHandler _mediator;
-        
+
 
         public CategoryController(IMediatorHandler mediator)
         {
             this._mediator = mediator;
         }
-
-        /// <summary>
-        /// Register category.
-        /// </summary>
-        [Route("")]
-        [HttpPost]
-        [ProducesResponseType(typeof(CategoryResponse), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> RegisterCategory([FromBody] RegisterCategoryRequest request)
-        {
-            var category = await _mediator.SendCommand(new RegisterCategoryCommand(request.Name));
-            return Created(string.Empty, category);
-        }
-
         /// <summary>
         /// Get category.
         /// </summary>
@@ -54,8 +41,42 @@ namespace Products.WebApi.Controllers
             var result = await _mediator.SendQuery(new GetCategoryByIdQuery(id));
             if (result is null)
                 return NotFound();
-            
+
             return Ok(result);
+        }
+
+
+        /// <summary>
+        /// Register category.
+        /// </summary>
+        [HttpPost]
+        [ProducesResponseType(typeof(CategoryResponse), (int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.BadGateway)]
+        public async Task<IActionResult> RegisterCategory([FromBody] RegisterCategoryRequest request)
+        {
+            return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _mediator.SendCommand(new RegisterCategoryCommand(request.Name)));
+        }
+
+        /// <summary>
+        /// Update category.
+        /// </summary>
+        [HttpPut]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadGateway)]
+        public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryRequest request)
+        {
+            return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _mediator.SendCommand(new UpdateCategoryCommand(request.Id, request.Name)));
+        }
+
+        /// <summary>
+        /// Delete category.
+        /// </summary>
+        [HttpDelete("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadGateway)]
+        public async Task<IActionResult> DeleteCategory(Guid id)
+        {
+            return !ModelState.IsValid ? CustomResponse(ModelState) : CustomResponse(await _mediator.SendCommand(new DeleteCategoryCommand(id)));
         }
     }
 }

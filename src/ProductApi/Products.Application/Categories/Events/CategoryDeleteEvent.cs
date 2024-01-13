@@ -1,11 +1,10 @@
 ﻿using Products.Application.Configuration.Messaging;
-using Productss.Domain.Entities;
 
 namespace Products.Application.Categories.Events
 {
-    public class CategoryRegisterEvent : Event
+    public class CategoryDeleteEvent : Event
     {
-        public CategoryRegisterEvent(Guid id, string name)
+        public CategoryDeleteEvent(Guid id, string name)
         {
             Id = id;
             AggregateId = id;
@@ -13,8 +12,6 @@ namespace Products.Application.Categories.Events
         }
 
         public Guid Id { get; private set; }
-
         public string Name { get; private set; }
-
     }
 }

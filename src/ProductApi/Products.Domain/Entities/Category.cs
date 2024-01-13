@@ -16,5 +16,15 @@ namespace Productss.Domain.Entities
             Id = id;
             Name = name;
         }
+
+        public void Update()
+        {
+             this.UpdatedAt = DateTime.Now;
+        }
+
+        public void Delete()
+        {
+            this.DeletedAt = DateTime.Now;
+        }
     }
 }

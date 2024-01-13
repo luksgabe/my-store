@@ -1,16 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MongoDB.Driver;
+using Products.Domain.Entities;
 using Products.Domain.Interfaces.Repositories;
 using Products.Domain.Interfaces.SeedWork;
 using Products.Infra.Data.Context;
 using Products.Infra.Data.Options;
+using Productss.Domain.Entities;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace Products.Infra.Data.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IAggregateRoot
     {
         protected AppDbContext _context { get; }
-        protected readonly IMongoCollection<TEntity> _mongoContext;
+        protected IMongoCollection<TEntity> _mongoContext;
         public Repository(AppDbContext context, IMongoDatabaseSettings _mongoSettings)
         {
             _context = context;
@@ -18,17 +22,38 @@ namespace Products.Infra.Data.Repositories
 
             var client = new MongoClient(_mongoSettings.ConnectionString);
             var mongoDb = client.GetDatabase(_mongoSettings.DatabaseName);
-            _mongoContext = mongoDb.GetCollection<TEntity>(nameof(TEntity));
+        }
+
+        protected void MongoDB(IMongoCollection<TEntity> mongoCollection)
+        {
+            _mongoContext = mongoCollection;
         }
 
         private DbSet<TEntity> _dbSet => _context.Set<TEntity>();
 
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
-            => await _mongoContext.Find(p => true).ToListAsync();
+        {
+            DateTime? deletedAt = null;
+            var filter = Builders<TEntity>.Filter.Eq("DeletedAt", deletedAt);
+
+            var result = await _mongoContext.Find(filter).ToListAsync();
+            return result;
+        }
+
+        public virtual async Task<IEnumerable<TEntity>> GetCustomData(Expression<Func<TEntity, bool>> expression)
+        {
+            DateTime? deletedAt = null;
+            var filter = Builders<TEntity>.Filter.Eq("DeletedAt", deletedAt);
+            filter = filter & Builders<TEntity>.Filter.Where(expression);
+            return await _mongoContext.Find(filter).ToListAsync();
+        }
 
         public virtual async Task<TEntity> GetByIdAsync(Guid id)
         {
-            return await _dbSet.FindAsync(id);
+            DateTime? deletedAt = null;
+            var filter = Builders<TEntity>.Filter.Eq("DeletedAt", deletedAt);
+            filter = filter & Builders<TEntity>.Filter.Eq("Id", id);
+            return await _mongoContext.Find(filter).FirstOrDefaultAsync();
         }
 
         public virtual async Task AddAsync(TEntity obj)
@@ -41,15 +66,35 @@ namespace Products.Infra.Data.Repositories
             await Task.Run(() => _dbSet.Update(obj));
         }
 
-        public void Remove(long id)
+        public virtual async Task RemoveAsync(TEntity entity)
         {
-            _dbSet.Remove(_dbSet.Find(id));
+            await Task.FromResult(_dbSet.Remove(entity));
         }       
 
         public void Dispose()
         {
             _context.Dispose();
             GC.SuppressFinalize(this);
+        }
+
+        public virtual async Task CreateNoSql(TEntity entity)
+            => await _mongoContext.InsertOneAsync(entity);
+
+        public virtual async Task UpdateNoSql(Guid id, TEntity entity)
+        {
+            var filter = Builders<TEntity>.Filter.Eq("Id", id);
+            await _mongoContext.ReplaceOneAsync(filter, entity);
+        }
+
+        public virtual async Task DeleteNoSql(Guid id)
+        {
+            var filter = Builders<TEntity>.Filter.Eq("Id", id);
+            _mongoContext.DeleteOne(filter);
+        }
+
+        public virtual async Task DeleteNoSql(Guid id, TEntity entityForDeletion)
+        {
+            await this.UpdateNoSql(id, entityForDeletion);
         }
 
         

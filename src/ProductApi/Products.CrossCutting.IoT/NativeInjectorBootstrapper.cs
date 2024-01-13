@@ -32,7 +32,6 @@ namespace Products.CrossCutting.IoT
             services.AddScoped<IMediatorHandler, RabbitMQueueBus>();
 
             //Event Handlers
-            //services.AddScoped<IEventHandler<CategoryRegisterEvent>, CategoryEventHandler>();
             services.AddTransient<CategoryEventHandler>();
 
             registerCommandsHandlers(services);
@@ -58,6 +57,8 @@ namespace Products.CrossCutting.IoT
         private static void registerCommandsHandlers(IServiceCollection services)
         {
             services.AddScoped<IRequestHandler<RegisterCategoryCommand, ValidationResult>, CategoryCommandHandler>();
+            services.AddScoped<IRequestHandler<UpdateCategoryCommand, ValidationResult>, CategoryCommandHandler>();
+            services.AddScoped<IRequestHandler<DeleteCategoryCommand, ValidationResult>, CategoryCommandHandler>();
         }
 
         private static void registerQueryHandlers(IServiceCollection services)

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Products.Domain.Interfaces.Repositories;
 
 namespace Products.Application.Categories.Commands.Validations
 {

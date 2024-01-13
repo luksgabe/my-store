@@ -12,7 +12,8 @@ namespace Products.Application.Categories.Map
             //Commands Map
             CreateMap<RegisterCategoryCommand, Category>()
                 .ConstructUsing(c => new Category(c.Id, c.Name));
-
+            CreateMap<UpdateCategoryCommand, Category>()
+                .ConstructUsing(c => new Category(c.Id, c.Name));
 
             //Response Map
             CreateMap<Category, CategoryResponse>().ReverseMap();

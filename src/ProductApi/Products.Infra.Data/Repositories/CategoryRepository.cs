@@ -17,12 +17,8 @@ namespace Products.Infra.Data.Repositories
             var database = client.GetDatabase(mongoSettings.DatabaseName);
 
             _categoryCollection = database.GetCollection<Category>(nameof(Category));
+            base.MongoDB(_categoryCollection);
         }
-
-        public override async Task<IEnumerable<Category>> GetAllAsync() => await _categoryCollection.Find(p => true).ToListAsync();
-
-        public override async Task<Category> GetByIdAsync(Guid id) => await _categoryCollection.Find(p => p.Id == id).FirstOrDefaultAsync();
-
         public async Task CreateCategory(Category category) => await _categoryCollection.InsertOneAsync(category);
 
         public async Task UpdateCategory(Guid id, Category category) => await _categoryCollection.ReplaceOneAsync(c => c.Id == id, category);

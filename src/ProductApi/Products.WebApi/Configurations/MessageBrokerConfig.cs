@@ -11,8 +11,15 @@ namespace Products.WebApi.Configurations
             using (var scope = app.Services.CreateScope())
             {
                 var rabbitEventBus = scope.ServiceProvider.GetRequiredService<IMediatorHandler>();
-                rabbitEventBus.Subscribe<CategoryRegisterEvent, CategoryEventHandler>();
+                AddScopedServiceCategory(rabbitEventBus);
             }
+        }
+
+        private static void AddScopedServiceCategory(IMediatorHandler rabbitEventBus)
+        {
+            rabbitEventBus.Subscribe<CategoryRegisterEvent, CategoryEventHandler>();
+            rabbitEventBus.Subscribe<CategoryUpdateEvent, CategoryEventHandler>();
+            rabbitEventBus.Subscribe<CategoryDeleteEvent, CategoryEventHandler>();
         }
     }
 }
