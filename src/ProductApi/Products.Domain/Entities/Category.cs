@@ -6,8 +6,8 @@ namespace Productss.Domain.Entities
     public class Category : Entity, IAggregateRoot
     {
         public string Name { get; private set; }
-        public override DateTime? UpdatedAt { get; set; }
-        public override DateTime? DeletedAt { get; set; }
+        public override DateTime? UpdatedAt { get; protected set; }
+        public override DateTime? DeletedAt { get; protected set; }
 
         public ICollection<Product> Products { get; set; }
 
@@ -15,16 +15,6 @@ namespace Productss.Domain.Entities
         {
             Id = id;
             Name = name;
-        }
-
-        public void Update()
-        {
-             this.UpdatedAt = DateTime.Now;
-        }
-
-        public void Delete()
-        {
-            this.DeletedAt = DateTime.Now;
         }
     }
 }

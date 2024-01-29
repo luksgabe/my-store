@@ -12,8 +12,8 @@ using Products.Infra.Data.Context;
 namespace Products.Infra.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231219212532_initial")]
-    partial class initial
+    [Migration("20240126034349_initiate")]
+    partial class initiate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,32 +52,6 @@ namespace Products.Infra.Data.Migrations
                     b.ToTable("StoredEvent");
                 });
 
-            modelBuilder.Entity("Products.Domain.Entities.Genre", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime")
-                        .HasColumnName("DeletedAt");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("Description");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime")
-                        .HasColumnName("UpdatedAt");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Genre", (string)null);
-                });
-
             modelBuilder.Entity("Products.Domain.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -98,10 +72,12 @@ namespace Products.Infra.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("Description");
 
-                    b.Property<Guid>("IdCategory")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Genre")
+                        .HasMaxLength(1)
+                        .HasColumnType("char")
+                        .HasColumnName("Genre");
 
-                    b.Property<Guid?>("IdGenre")
+                    b.Property<Guid>("IdCategory")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
@@ -122,8 +98,6 @@ namespace Products.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IdCategory");
-
-                    b.HasIndex("IdGenre");
 
                     b.ToTable("Product", (string)null);
                 });
@@ -162,19 +136,7 @@ namespace Products.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Products.Domain.Entities.Genre", "Genre")
-                        .WithMany("Products")
-                        .HasForeignKey("IdGenre")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.Navigation("Category");
-
-                    b.Navigation("Genre");
-                });
-
-            modelBuilder.Entity("Products.Domain.Entities.Genre", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Productss.Domain.Entities.Category", b =>

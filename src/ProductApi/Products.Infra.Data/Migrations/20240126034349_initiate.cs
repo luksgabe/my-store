@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Products.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class initiate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,20 +23,6 @@ namespace Products.Infra.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Genre",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Description = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "datetime", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Genre", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,8 +51,8 @@ namespace Products.Infra.Data.Migrations
                     Size = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime", nullable: true),
-                    IdCategory = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IdGenre = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Genre = table.Column<string>(type: "char(1)", maxLength: 1, nullable: true),
+                    IdCategory = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -77,23 +63,12 @@ namespace Products.Infra.Data.Migrations
                         principalTable: "Category",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Product_Genre_IdGenre",
-                        column: x => x.IdGenre,
-                        principalTable: "Genre",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_IdCategory",
                 table: "Product",
                 column: "IdCategory");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Product_IdGenre",
-                table: "Product",
-                column: "IdGenre");
         }
 
         /// <inheritdoc />
@@ -107,9 +82,6 @@ namespace Products.Infra.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category");
-
-            migrationBuilder.DropTable(
-                name: "Genre");
         }
     }
 }

@@ -9,6 +9,14 @@ namespace Products.WebApi.Controllers
     {
         private readonly ICollection<string> _errors = new List<string>();
 
+        protected ActionResult GetCustomResponse(object result)
+        {
+            if (result != null)
+                return Ok(result);
+
+            return NotFound();
+        }
+
         protected ActionResult CustomResponse(object result = null)
         {
             if (IsOperationValid())

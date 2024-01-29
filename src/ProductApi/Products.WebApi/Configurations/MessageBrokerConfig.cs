@@ -1,6 +1,6 @@
 ﻿using Products.Application.Categories.Events;
 using Products.Application.Configuration;
-
+using Products.Application.Products.Events;
 
 namespace Products.WebApi.Configurations
 {
@@ -12,6 +12,7 @@ namespace Products.WebApi.Configurations
             {
                 var rabbitEventBus = scope.ServiceProvider.GetRequiredService<IMediatorHandler>();
                 AddScopedServiceCategory(rabbitEventBus);
+                AddScopedServiceProduct(rabbitEventBus);
             }
         }
 
@@ -20,6 +21,13 @@ namespace Products.WebApi.Configurations
             rabbitEventBus.Subscribe<CategoryRegisterEvent, CategoryEventHandler>();
             rabbitEventBus.Subscribe<CategoryUpdateEvent, CategoryEventHandler>();
             rabbitEventBus.Subscribe<CategoryDeleteEvent, CategoryEventHandler>();
+        }
+
+        private static void AddScopedServiceProduct(IMediatorHandler rabbitEventBus)
+        {
+            rabbitEventBus.Subscribe<ProductRegisterEvent, ProductEventHandler>();
+            rabbitEventBus.Subscribe<ProductUpdateEvent, ProductEventHandler>();
+            rabbitEventBus.Subscribe<ProductDeleteEvent, ProductEventHandler>();
         }
     }
 }

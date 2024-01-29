@@ -1,5 +1,4 @@
 ﻿using Products.Application.Configuration.Messaging;
-using Productss.Domain.Entities;
 
 namespace Products.Application.Categories.Events
 {

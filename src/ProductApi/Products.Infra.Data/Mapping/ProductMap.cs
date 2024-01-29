@@ -29,21 +29,20 @@ namespace Products.Infra.Data.Mapping
                 .HasColumnType("varchar(10)")
                 .HasMaxLength(10);
 
-
             builder.Property(p => p.Size)
                 .HasColumnName("Size")
                 .HasColumnType("varchar(5)")
                 .HasMaxLength(5);
 
+            builder.Property(p => p.Genre)
+                .HasColumnName("Genre")
+                .HasColumnType("char")
+                .HasMaxLength(1);
+
             builder.HasOne(p => p.Category)
                .WithMany(c => c.Products)
                .HasForeignKey(p => p.IdCategory)
                .IsRequired()
-               .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(p => p.Genre)
-               .WithMany(c => c.Products)
-               .HasForeignKey(p => p.IdGenre)
                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(c => c.UpdatedAt)

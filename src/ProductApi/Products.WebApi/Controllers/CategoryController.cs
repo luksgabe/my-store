@@ -19,19 +19,11 @@ namespace Products.WebApi.Controllers
         {
             this._mediator = mediator;
         }
-        /// <summary>
-        /// Get category.
-        /// </summary>
-        [HttpGet]
-        [ProducesResponseType(typeof(IEnumerable<CategoryResponse>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> Get()
-        {
-            var result = await _mediator.SendQuery(new GetAllCategoriesQuery());
-            return Ok(result);
-        }
 
         /// <summary>
         /// Get category.
+        /// <paramref name="id"/>
+        /// /// <return>An specifically category</return>
         /// </summary>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(CategoryResponse), (int)HttpStatusCode.OK)]
@@ -42,8 +34,22 @@ namespace Products.WebApi.Controllers
             if (result is null)
                 return NotFound();
 
-            return Ok(result);
+            return GetCustomResponse(result);
         }
+
+        /// <summary>
+        /// Get category.
+        /// <return>List of categories</return>
+        /// </summary>
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<CategoryResponse>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Get()
+        {
+            var result = await _mediator.SendQuery(new GetAllCategoriesQuery());
+            return GetCustomResponse(result);
+        }
+
+
 
 
         /// <summary>
