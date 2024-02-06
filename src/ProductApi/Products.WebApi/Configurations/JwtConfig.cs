@@ -36,8 +36,8 @@ namespace Products.WebApi.Configurations
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
                     ValidAudience = appSettings.Audience,
                     ValidIssuer = appSettings.Issuer
                 };

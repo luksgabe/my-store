@@ -28,6 +28,9 @@ builder.Services.AddJwtConfiguration(builder.Configuration, "AppSettings");
 //Adding AutoMapper configuration
 builder.Services.AddAutoMapperConfiguration();
 
+// Swagger Config
+builder.Services.AddSwaggerConfiguration();
+
 // Adding MediatR for Domain Events and Notifications
 builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<Program>());
 
@@ -46,8 +49,20 @@ app.AddMessageBrokerConfig();
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
+app.UseCors(c =>
+{
+    c.AllowAnyHeader();
+    c.AllowAnyMethod();
+    c.AllowAnyOrigin();
+});
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseSwaggerSetup();
 
 app.Run();

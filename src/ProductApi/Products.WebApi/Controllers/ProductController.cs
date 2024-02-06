@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Products.Application.Configuration;
 using Products.Application.Products.Commands;
 using Products.Application.Products.Queries;
@@ -8,6 +9,7 @@ using System.Net;
 
 namespace Products.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/products")]
     [ApiController]
     public class ProductsController : ApiController
@@ -26,6 +28,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ProductResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get(Guid id)
         {
@@ -38,6 +41,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ProductResponse>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
         public async Task<IActionResult> Get()
         {
@@ -50,6 +54,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.BadGateway)]
         public async Task<IActionResult> RegisterProduct([FromBody] RegisterProductRequest request)
         {
@@ -69,6 +74,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.BadGateway)]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductRequest request)
         {
@@ -91,6 +97,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.BadGateway)]
         public async Task<IActionResult> UpdateProduct(Guid id)
         {

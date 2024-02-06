@@ -72,9 +72,11 @@ namespace Products.WebApi.Controllers
 
             byte[] bytes = Encoding.ASCII.GetBytes(_appJwtSettings.SecretKey);
             var credentials = new SigningCredentials(new SymmetricSecurityKey(bytes), SecurityAlgorithms.HmacSha256Signature);
-            var token = new JwtSecurityToken(
+            var token = new JwtSecurityToken(                   
                     claims: claims,
-                    expires: DateTime.Now.AddDays(1),
+                    expires: DateTime.Now.AddDays(_appJwtSettings.Expiration),
+                    audience: _appJwtSettings.Audience,
+                    issuer: _appJwtSettings.Issuer,
                     signingCredentials: credentials
                 );
             return new JwtSecurityTokenHandler().WriteToken(token);
