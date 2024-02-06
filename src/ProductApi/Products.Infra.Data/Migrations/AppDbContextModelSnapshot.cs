@@ -49,6 +49,32 @@ namespace Products.Infra.Data.Migrations
                     b.ToTable("StoredEvent");
                 });
 
+            modelBuilder.Entity("Products.Domain.Entities.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("DeletedAt");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("Name");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("UpdatedAt");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category", (string)null);
+                });
+
             modelBuilder.Entity("Products.Domain.Entities.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -99,7 +125,7 @@ namespace Products.Infra.Data.Migrations
                     b.ToTable("Product", (string)null);
                 });
 
-            modelBuilder.Entity("Productss.Domain.Entities.Category", b =>
+            modelBuilder.Entity("Products.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -110,11 +136,22 @@ namespace Products.Infra.Data.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("DeletedAt");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("Email");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("Name");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)")
+                        .HasColumnName("Password");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime")
@@ -122,12 +159,14 @@ namespace Products.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category", (string)null);
+                    b.HasIndex("Email");
+
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Products.Domain.Entities.Product", b =>
                 {
-                    b.HasOne("Productss.Domain.Entities.Category", "Category")
+                    b.HasOne("Products.Domain.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("IdCategory")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -136,7 +175,7 @@ namespace Products.Infra.Data.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("Productss.Domain.Entities.Category", b =>
+            modelBuilder.Entity("Products.Domain.Entities.Category", b =>
                 {
                     b.Navigation("Products");
                 });

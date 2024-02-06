@@ -3,7 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Products.Application.Configuration.Messaging;
 using Products.Domain.Entities;
 using Products.Domain.Interfaces.SeedWork;
-using Productss.Domain.Entities;
+using Products.Domain.Entities;
+using System.Reflection.Metadata;
 
 
 namespace Products.Infra.Data.Context
@@ -14,8 +15,10 @@ namespace Products.Infra.Data.Context
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Ignore<ValidationResult>();
             modelBuilder.Ignore<Event>();
 

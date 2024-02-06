@@ -5,7 +5,7 @@ using Products.Domain.Interfaces.Repositories;
 using Products.Domain.Interfaces.SeedWork;
 using Products.Infra.Data.Context;
 using Products.Infra.Data.Options;
-using Productss.Domain.Entities;
+using Products.Domain.Entities;
 using System.Linq.Expressions;
 using System.Reflection;
 

@@ -1,5 +1,5 @@
 ﻿using Products.Domain.Interfaces.SeedWork;
-using Productss.Domain.Entities;
+using Products.Domain.Entities;
 
 namespace Products.Domain.Entities
 {

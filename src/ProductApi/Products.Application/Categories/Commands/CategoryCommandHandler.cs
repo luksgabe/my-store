@@ -5,7 +5,7 @@ using Products.Application.Categories.Events;
 using Products.Application.Configuration.Commands;
 using Products.Domain.Interfaces.Repositories;
 using Products.Domain.Interfaces.SeedWork;
-using Productss.Domain.Entities;
+using Products.Domain.Entities;
 
 
 namespace Products.Application.Categories.Commands

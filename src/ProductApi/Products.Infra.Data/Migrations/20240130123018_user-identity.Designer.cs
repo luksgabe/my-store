@@ -12,8 +12,8 @@ using Products.Infra.Data.Context;
 namespace Products.Infra.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240126034349_initiate")]
-    partial class initiate
+    [Migration("20240130123018_user-identity")]
+    partial class useridentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,32 @@ namespace Products.Infra.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("StoredEvent");
+                });
+
+            modelBuilder.Entity("Products.Domain.Entities.Category", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("DeletedAt");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("Name");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime")
+                        .HasColumnName("UpdatedAt");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("Products.Domain.Entities.Product", b =>
@@ -102,7 +128,7 @@ namespace Products.Infra.Data.Migrations
                     b.ToTable("Product", (string)null);
                 });
 
-            modelBuilder.Entity("Products.Domain.Entities.Category", b =>
+            modelBuilder.Entity("Products.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,11 +139,22 @@ namespace Products.Infra.Data.Migrations
                         .HasColumnType("datetime")
                         .HasColumnName("DeletedAt");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("Email");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
                         .HasColumnName("Name");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("varchar(max)")
+                        .HasColumnName("Password");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime")
@@ -125,7 +162,9 @@ namespace Products.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category", (string)null);
+                    b.HasIndex("Email");
+
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Products.Domain.Entities.Product", b =>

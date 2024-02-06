@@ -1,5 +1,5 @@
 ﻿using Products.Domain.Interfaces.SeedWork;
-using Productss.Domain.Entities;
+using Products.Domain.Entities;
 using System.Linq.Expressions;
 
 namespace Products.Domain.Interfaces.Repositories

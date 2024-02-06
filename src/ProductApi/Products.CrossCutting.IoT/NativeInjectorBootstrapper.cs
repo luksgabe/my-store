@@ -12,6 +12,10 @@ using Products.Application.Products.Commands;
 using Products.Application.Products.Events;
 using Products.Application.Products.Queries;
 using Products.Application.Products.Responses;
+using Products.Application.Users.Commands;
+using Products.Application.Users.Events;
+using Products.Application.Users.Queries;
+using Products.Application.Users.Responses;
 using Products.CrossCutting.Bus;
 using Products.Domain.Interfaces.Repositories;
 using Products.Domain.Interfaces.SeedWork;
@@ -34,6 +38,7 @@ namespace Products.CrossCutting.IoT
             //Event Handlers
             services.AddTransient<CategoryEventHandler>();
             services.AddTransient<ProductEventHandler>();
+            services.AddTransient<UserEventHandler>();
 
             registerCommandsHandlers(services);
 
@@ -45,6 +50,7 @@ namespace Products.CrossCutting.IoT
             //Infra - Repositories
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             //Infra - Contexts
             services.AddScoped<AppDbContext>();
@@ -66,6 +72,10 @@ namespace Products.CrossCutting.IoT
             services.AddScoped<IRequestHandler<RegisterProductCommand, ValidationResult>, ProductCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateProductCommand, ValidationResult>, ProductCommandHandler>();
             services.AddScoped<IRequestHandler<DeleteProductCommand, ValidationResult>, ProductCommandHandler>();
+
+            //User commands
+            services.AddScoped<IRequestHandler<RegisterUserCommand, ValidationResult>, UserCommandHandler>();
+            services.AddScoped<IRequestHandler<LoginUserCommand, ValidationResult>, UserCommandHandler>();
         }
 
         private static void registerQueryHandlers(IServiceCollection services)
@@ -77,6 +87,9 @@ namespace Products.CrossCutting.IoT
             //Products queries
             services.AddScoped<IRequestHandler<GetAllProductsQuery, IEnumerable<ProductResponse>>, ProductQueryHandler>();
             services.AddScoped<IRequestHandler<GetProductByIdQuery, ProductResponse>, ProductQueryHandler>();
+
+            //User queries
+            services.AddScoped<IRequestHandler<GetUserByEmailQuery, UserResponse>, UserQueryHandler>();
         }
     }
 }

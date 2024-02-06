@@ -2,7 +2,7 @@
 using MediatR;
 using Products.Application.Categories.Responses;
 using Products.Domain.Interfaces.Repositories;
-using Productss.Domain.Entities;
+using Products.Domain.Entities;
 
 namespace Products.Application.Categories.Queries
 {

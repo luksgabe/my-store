@@ -4,7 +4,7 @@ using Products.Domain.Entities;
 using Products.Domain.Interfaces.Repositories;
 using Products.Infra.Data.Context;
 using Products.Infra.Data.Options;
-using Productss.Domain.Entities;
+using Products.Domain.Entities;
 namespace Products.Infra.Data.Repositories
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository

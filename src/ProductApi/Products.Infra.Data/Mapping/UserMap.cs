@@ -4,22 +4,34 @@ using Products.Domain.Entities;
 
 namespace Products.Infra.Data.Mapping
 {
-    public class CategoryMap : IEntityTypeConfiguration<Category>
+    public class UserMap : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("Category");
+            builder.ToTable("User");
 
             builder.Property(p => p.Id)
-                .HasColumnName("Id")
-                .IsRequired();
+               .HasColumnName("Id")
+               .IsRequired();
 
             builder.Property(p => p.Name)
                 .HasColumnName("Name")
                 .HasColumnType("varchar(255)")
                 .HasMaxLength(255)
                 .IsRequired();
-                
+
+            builder.Property(p => p.Email)
+                .HasColumnName("Email")
+                .HasColumnType("varchar(100)")
+                .HasMaxLength(100)
+                .IsRequired();
+
+            builder.HasIndex(p => p.Email);
+
+            builder.Property(p => p.Password)
+                .HasColumnName("Password")
+                .HasColumnType("varchar(max)")
+                .IsRequired();
 
             builder.Property(c => c.UpdatedAt)
                 .HasColumnType("datetime")
@@ -30,10 +42,6 @@ namespace Products.Infra.Data.Mapping
                 .HasColumnType("datetime")
                 .HasColumnName("DeletedAt")
                 .IsRequired(false);
-
-            builder.HasMany(c => c.Products)
-               .WithOne(p => p.Category)
-               .HasForeignKey(c => c.IdCategory);
         }
     }
 }

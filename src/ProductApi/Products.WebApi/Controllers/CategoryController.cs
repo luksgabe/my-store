@@ -5,9 +5,11 @@ using Products.Application.Categories.Requests;
 using Products.Application.Configuration;
 using System.Net;
 using Products.Application.Categories.Queries;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Products.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/category")]
     [ApiController]
     public class CategoryController : ApiController
@@ -27,6 +29,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(CategoryResponse), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get(Guid id)
         {
@@ -43,6 +46,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<CategoryResponse>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         public async Task<IActionResult> Get()
         {
             var result = await _mediator.SendQuery(new GetAllCategoriesQuery());
@@ -57,6 +61,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpPost]
         [ProducesResponseType(typeof(CategoryResponse), (int)HttpStatusCode.Created)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.BadGateway)]
         public async Task<IActionResult> RegisterCategory([FromBody] RegisterCategoryRequest request)
         {
@@ -68,6 +73,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpPut]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.BadGateway)]
         public async Task<IActionResult> UpdateCategory([FromBody] UpdateCategoryRequest request)
         {
@@ -79,6 +85,7 @@ namespace Products.WebApi.Controllers
         /// </summary>
         [HttpDelete("{id}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType((int)HttpStatusCode.BadGateway)]
         public async Task<IActionResult> DeleteCategory(Guid id)
         {
