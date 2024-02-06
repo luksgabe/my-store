@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Products.Application.Categories.Commands;
 using Products.Application.Categories.Responses;
-using Productss.Domain.Entities;
+using Products.Domain.Entities;
 
 namespace Products.Application.Categories.Map
 {
