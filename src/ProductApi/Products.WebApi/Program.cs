@@ -38,6 +38,8 @@ builder.Services.AddDependencyInjectionConfiguration(builder.Configuration);
 
 var app = builder.Build();
 
+DatabaseConfig.CreateDatabaseIfNotExists(app);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

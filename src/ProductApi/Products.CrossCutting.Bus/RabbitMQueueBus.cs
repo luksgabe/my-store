@@ -49,21 +49,35 @@ namespace Products.CrossCutting.Bus
         public async Task PublishEvent<T>(T @event) where T : Event
         {
             if (!@event.MessageType.Equals("DomainNotification"))
-                _eventStore?.Save(@event);
-
-            var factory = new ConnectionFactory()
             {
-                HostName = _setting.Host,
-                UserName = _setting.User,
-                Password = _setting.Password
-            };
-            using var connection = factory.CreateConnection();
-            using var channel = connection.CreateModel();
-            var eventName = @event.GetType().Name;
-            channel.QueueDeclare(eventName, false, false, false, null);
-            var message = JsonConvert.SerializeObject(@event);
-            var body = Encoding.UTF8.GetBytes(message);
-            channel.BasicPublish("", eventName, null, body);
+                _eventStore?.Save(@event);
+            }
+
+            try
+            {
+                _logger.LogInformation("Tentando se conectar...");
+                var factory = new ConnectionFactory()
+                {
+                    HostName = _setting.Host,
+                    UserName = _setting.User,
+                    Password = _setting.Password
+                };
+                using var connection = factory.CreateConnection();
+                using var channel = connection.CreateModel();
+                var eventName = @event.GetType().Name;
+                channel.QueueDeclare(eventName, false, false, false, null);
+                var message = JsonConvert.SerializeObject(@event);
+                var body = Encoding.UTF8.GetBytes(message);
+                channel.BasicPublish("", eventName, null, body);
+
+                _logger.LogInformation($"Conectado ao serviço de rabbitMq com conexão: {connection.ClientProvidedName} com estado de conexão aberta definida como: {connection.IsOpen} ");
+                _logger.LogInformation($"{eventName}: {message}");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Atenção, ocorreu o seguinte erro:{ex.Message} com stack: {ex.StackTrace} e innerException: {ex.InnerException.Message}" );
+            }
+            
         }
 
         public void Subscribe<T, TH>() where T : Event where TH : IEventHandler<T>

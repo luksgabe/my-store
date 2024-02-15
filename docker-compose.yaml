@@ -3,30 +3,79 @@ version: '3.8'
 services:
         rabbitmq:
                image: rabbitmq:3-management
-               container_name: rabbitmq_management               
+               container_name: rabbitmq               
                ports: 
                 - 5672:5672 # (erlang) communication between the nodes and CLI tool
                 - 15672:15672 # communication with the web management API 
-               
                volumes:
-                # data persistence
                 - /docker_conf/rabbitmq/data/:/var/lib/rabbitmq/
-                # data mapping -> host: container
-                # queues and messages data of the container will be stored on the host
                environment:
                 - RABBITMQ_DEFAULT_USER=admin
-                - RABBITMQ_DEFAULT_PASS=123456
-               
+                - RABBITMQ_DEFAULT_PASS=123456               
                restart: always
-        mongodb-product:
-            image: mongodb/mongodb-community-server:6.0-ubi8
-            restart: always
+               networks:
+                - store-network
+
+        mongodb:
+            image: mongo:latest
+            container_name: mongodb
+            ports: 
+                - 27017:27017
+            volumes:
+                - mongodb_data:/data/db
             environment:
-            - MONGO_INITDB_ROOT_USERNAME=admin
-            - MONGO_INITDB_ROOT_PASSWORD=123456
-            - ME_CONFIG_MONGODB_URL=mongodb://root:example@mongo:27017/
+                - MONGO_INITDB_ROOT_USERNAME=admin
+                - MONGO_INITDB_ROOT_PASSWORD=admin
+            restart: always
+            networks:
+                - store-network
+        
+        sqlserver:
+            image: mcr.microsoft.com/mssql/server:2022-latest
+            container_name: sqlserver
+            hostname: 'sqlserver'
+            environment:
+                SA_PASSWORD: "CZyEajm4wR6CJGAA"
+                ACCEPT_EULA: "Y"
+            ports:
+                - "1433:1433" 
+            expose:
+                - 1433           
+            networks:
+                - store-network
+
+        product-api:
+            image: product-api
+            container_name: product-api
+            hostname: product-api
+            volumes:
+                - product_api:/data/product_api
+            build: 
+                context: ./src/ProductApi
+                dockerfile: Products.WebApi/Dockerfile
+            environment:
+                ASPNETCORE_ENVIRONMENT: $env_type
+            ports:
+            - "5000:80"
+            - "5001:443"  # Mapeando a porta 443 para o host        
+
+            networks:
+                - store-network
+            depends_on:
+                - rabbitmq
+                - mongodb
+                - sqlserver
         
 volumes:
     logs-folder:
         name: ${log_rabbitmq_management}
         driver: local
+    mongodb_data:
+        driver: local
+    product_api:
+        driver: local
+
+networks:
+  store-network:
+    name: store-network
+    driver: bridge

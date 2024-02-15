@@ -43,7 +43,7 @@ namespace Products.Application.Products.Commands.Validations
                     }
                     return isValid;
                 })
-                .WithMessage("The value of gender must be whether m or b");
+                .WithMessage("The value of gender must be whether m or f");
         }
     }
 }
